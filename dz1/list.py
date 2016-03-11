@@ -1,4 +1,5 @@
-# -*-coding=utf-8-*-
+# coding=utf-8
+
 # Списки
 
 # Заполните код преведенных ниже функций. Функция main() уже настроена
@@ -15,12 +16,11 @@
 # а первый и последний символы этих строк совпадают.
 # Примечание: в python нет оператора ++. Но += сработает.
 def match_ends(words):
-	i = 0
-	for word in words:
-		if len(word) >= 2:
-			if word[0] == word[-1]:
-				i += 1
-	return i
+    i = 0
+    for word in words:
+        if len(word) >= 2 and word[0] == word[-1]:
+            i += 1
+    return i
 
 
 # B. Начинающиеся с X в начале
@@ -31,8 +31,14 @@ def match_ends(words):
 # ['xanadu', 'xyz', 'aardvark', 'apple', 'mix']
 # Подсказка: это можно сделать при помощи склеивания 2х заранее отсортированных списков
 def front_x(words):
-    # +++ ваш код +++
-    return
+    x = 'x'
+    tem1, tem2 = [], []
+    for word in words:
+        if word[0] == x:
+            tem1.append(word)
+        else:
+            tem2.append(word)
+    return sorted(tem1) + sorted(tem2)
 
 
 # C. Сортировка по последнему числу
@@ -45,24 +51,31 @@ def front_x(words):
 # чтобы получить последний элемент подсписка.
 
 def sort_last(lists):
-    # +++ ваш код +++
-    return
-
-
+    def sort_in(res):
+        return res[-1]
+    lists.sort(key=sort_in)
+    return lists
 
 # D. Удаление соседей
 # Дан список чисел.
 # Нужно вернуть список, где все соседние элементы
 # были бы сведены к одному элементу.
-# Таким образом, из [1, 2, 2, 3, 4, 4] получится [1, 2, 3, 4]. 
+# Таким образом, из [1, 2, 2, 3, 4, 4] получится [1, 2, 3, 4].
+
+
 def remove_adjacent(nums):
-    # +++ ваш код +++
-    return
-
-
+    prev = None
+    res = []
+    for x in nums:
+        if x != prev:
+            res.append(x)
+        prev = x
+    return res
 
 # Простая функция test() используется в main() для вывода
 # сравнения того, что возвращает с функция с тем, что она должна возвращать.
+
+
 def test(got, expected):
     if got == expected:
         prefix = ' OK '
